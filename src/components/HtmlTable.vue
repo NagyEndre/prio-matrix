@@ -1,11 +1,9 @@
-<script setup>
-import { ref } from "vue";
+<script lang="ts" setup>
 import PrioCell from "./PrioCell.vue";
 
-const msg = ref("Hello World!");
 const prios = ["HIGH", "MID", "LOW"];
 
-function getClass(prio) {
+function getClass(prio: string) {
   return prio.toLowerCase();
 }
 </script>
