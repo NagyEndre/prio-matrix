@@ -10,7 +10,9 @@
     <ul>
       <li v-for="item in items">
         <span @click="onSelection(item)">{{ item }}</span>
-        <button @click="completeItem(item)">done</button>
+        <button @click="completeItem(item)">
+          <img src="../assets/tick.gif" height="32" width="32" />
+        </button>
         <button @click="deleteItem(item)">
           <img src="../assets/trash.gif" height="32" width="32" />
         </button>
