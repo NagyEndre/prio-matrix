@@ -10,6 +10,7 @@
     <ul>
       <li v-for="item in items">
         <span @click="onSelection(item)">{{ item }}</span>
+        <button @click="completeItem(item)">done</button>
         <button @click="deleteItem(item)">
           <img src="../assets/trash.gif" height="32" width="32" />
         </button>
@@ -23,16 +24,18 @@
 
 <script lang="ts" setup>
 import { Ref, ref } from "vue";
-import BtnSoundError from "../assets/button-sound-error.mp3";
-import BtnSoundSuccess from "../assets/button-sound-success.mp3";
+import DiscordConnect from "../assets/discord-connect.mp3";
+import Pew from "../assets/pew.mp3";
+import LegoBreak from "../assets/lego-breaking.mp3";
 
 const items: Ref<string[]> = ref([]);
 const taskInput = ref(null);
 const isInputShown = ref(false);
 const newTask = ref("");
 
-const errorSound = new Audio(BtnSoundError);
-const successSound = new Audio(BtnSoundSuccess);
+const deleteSound = new Audio(LegoBreak);
+const addSound = new Audio(DiscordConnect);
+const completeSound = new Audio(Pew);
 
 function showInput() {
   isInputShown.value = true;
@@ -42,7 +45,14 @@ function showInput() {
 function deleteItem(item: string) {
   console.log(`deleting item ${item}`);
   const i = items.value.indexOf(item);
-  errorSound.play();
+  deleteSound.play();
+  items.value.splice(i, 1);
+}
+
+function completeItem(item: string) {
+  console.log(`completing item ${item}`);
+  const i = items.value.indexOf(item);
+  completeSound.play();
   items.value.splice(i, 1);
 }
 
@@ -52,7 +62,7 @@ function onSelection(item: string) {
 
 function onInput(input: string) {
   items.value.push(input);
-  successSound.play();
+  addSound.play();
   isInputShown.value = false;
   newTask.value = "";
 }
