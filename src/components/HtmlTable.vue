@@ -40,6 +40,7 @@ th,
 td {
   border: 1px solid grey;
   border-radius: 0.2rem;
+  padding: 0.5rem;
 }
 .title {
   background-color: cornflowerblue;
