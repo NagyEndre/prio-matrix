@@ -5,6 +5,7 @@
       v-model="newTask"
       ref="taskInput"
       @keyup.enter="onInput(newTask)"
+      @blur="onInput(newTask)"
       placeholder="Add task"
     />
     <ul>
@@ -63,8 +64,10 @@ function onSelection(item: string) {
 }
 
 function onInput(input: string) {
-  items.value.push(input);
-  addSound.play();
+  if (input.trim() !== "") {
+    items.value.push(input);
+    addSound.play();
+  }
   isInputShown.value = false;
   newTask.value = "";
 }
