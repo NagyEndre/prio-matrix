@@ -10,7 +10,9 @@
     <ul>
       <li v-for="item in items">
         <span @click="onSelection(item)">{{ item }}</span>
-        <button @click="deleteItem(item)">remove</button>
+        <button @click="deleteItem(item)">
+          <img src="../assets/trash.gif" height="32" width="32" />
+        </button>
       </li>
     </ul>
     <div class="right-alignment">
@@ -55,6 +57,7 @@ function onInput(input: string) {
 }
 button {
   margin-left: 1rem;
+  padding: 0.3em 1em;
 }
 ul {
   list-style-type: none;
