@@ -23,11 +23,16 @@
 
 <script lang="ts" setup>
 import { Ref, ref } from "vue";
+import BtnSoundError from "../assets/button-sound-error.mp3";
+import BtnSoundSuccess from "../assets/button-sound-success.mp3";
 
 const items: Ref<string[]> = ref([]);
 const taskInput = ref(null);
 const isInputShown = ref(false);
 const newTask = ref("");
+
+const errorSound = new Audio(BtnSoundError);
+const successSound = new Audio(BtnSoundSuccess);
 
 function showInput() {
   isInputShown.value = true;
@@ -37,6 +42,7 @@ function showInput() {
 function deleteItem(item: string) {
   console.log(`deleting item ${item}`);
   const i = items.value.indexOf(item);
+  errorSound.play();
   items.value.splice(i, 1);
 }
 
@@ -46,6 +52,7 @@ function onSelection(item: string) {
 
 function onInput(input: string) {
   items.value.push(input);
+  successSound.play();
   isInputShown.value = false;
   newTask.value = "";
 }
