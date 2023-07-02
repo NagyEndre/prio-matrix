@@ -9,14 +9,16 @@
       placeholder="Add task"
     />
     <ul>
-      <li v-for="item in items">
+      <li v-for="item in items" class="container">
         <span @click="onSelection(item)">{{ item }}</span>
-        <button @click="completeItem(item)">
-          <img src="../assets/tick.gif" height="32" width="32" />
-        </button>
-        <button @click="deleteItem(item)">
-          <img src="../assets/trash.gif" height="32" width="32" />
-        </button>
+        <div>
+          <button @click="completeItem(item)">
+            <img src="../assets/tick.gif" :height="imgSize" :width="imgSize" />
+          </button>
+          <button @click="deleteItem(item)">
+            <img src="../assets/trash.gif" :height="imgSize" :width="imgSize" />
+          </button>
+        </div>
       </li>
     </ul>
     <div class="right-alignment">
@@ -35,6 +37,7 @@ const items: Ref<string[]> = ref([]);
 const taskInput = ref(null);
 const isInputShown = ref(false);
 const newTask = ref("");
+const imgSize = 20;
 
 const deleteSound = new Audio(LegoBreak);
 const addSound = new Audio(DiscordConnect);
@@ -78,13 +81,18 @@ function onInput(input: string) {
   text-align: right;
 }
 button {
-  margin-left: 1rem;
   padding: 0.3em 1em;
 }
 ul {
   list-style-type: none;
+  padding-inline-start: 0px;
 }
 .prio-cell {
   height: 100%;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 5em;
 }
 </style>
